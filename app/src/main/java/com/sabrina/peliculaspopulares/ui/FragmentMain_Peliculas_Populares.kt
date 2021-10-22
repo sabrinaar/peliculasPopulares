@@ -22,7 +22,7 @@ import com.sabrina.peliculaspopulares.vo.Resource
 import kotlinx.android.synthetic.main.fragment_lista_peliculas_popul.*
 
 
-class Fragment_Peliculas_Populares : Fragment(), AdapterPeliculas.onPeliculaClickListener {
+class FragmentMain_Peliculas_Populares : Fragment(), AdapterPeliculas.onPeliculaClickListener {
 
     private val viewmodel by viewModels<MainViewModel> { VMFactory(RepoImpl(DataSource())) }
 
@@ -57,7 +57,7 @@ class Fragment_Peliculas_Populares : Fragment(), AdapterPeliculas.onPeliculaClic
                     Toast.makeText(
                         requireContext(),
                         "Ocurrió un error al traer los datos ${result.exception}",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }

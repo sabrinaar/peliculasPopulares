@@ -23,7 +23,7 @@
             android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
-            android:src="@drawable/poster_placeholder">
+            android:src="@drawable/ic_launcher_foreground">
 
         </ImageView>
 

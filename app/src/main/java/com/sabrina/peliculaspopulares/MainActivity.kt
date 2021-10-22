@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var navController: NavController
 
 

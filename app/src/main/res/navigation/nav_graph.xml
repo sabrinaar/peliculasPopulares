@@ -5,15 +5,17 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragment_Peliculas_Populares">
     <fragment
+        android:id="@+id/fragment_Detalles_Pelicula"
+        android:name="com.sabrina.peliculaspopulares.ui.Fragment_Detalles_Pelicula"
+        android:label="fragment_detalles_pelicula"
+        tools:layout="@layout/fragment_detalles_pelicula" />
+    <fragment
         android:id="@+id/fragment_Peliculas_Populares"
-        android:name="com.sabrina.peliculaspopulares.ui.Fragment_Peliculas_Populares"
-        android:label="Peliculas Populares">
+        android:name="com.sabrina.peliculaspopulares.ui.FragmentMain_Peliculas_Populares"
+        android:label="fragment_lista_peliculas_popul"
+        tools:layout="@layout/fragment_lista_peliculas_popul" >
         <action
             android:id="@+id/action_fragment_Peliculas_Populares_to_fragment_Detalles_Pelicula"
             app:destination="@id/fragment_Detalles_Pelicula" />
     </fragment>
-    <fragment
-        android:id="@+id/fragment_Detalles_Pelicula"
-        android:name="com.sabrina.peliculaspopulares.ui.Fragment_Detalles_Pelicula"
-        android:label="Detalles" />
 </navigation>

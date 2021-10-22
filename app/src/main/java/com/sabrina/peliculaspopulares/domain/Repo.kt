@@ -5,5 +5,7 @@ import com.sabrina.peliculaspopulares.vo.Resource
 
 interface Repo {
 
-        fun getPeliculasPopulares():Resource<List<Pelicula>>
+        suspend fun getPeliculasPopulares(): Resource<List<Pelicula>>
+
+        suspend fun getDeatllesPelicula(id_movie: Int): Resource<Pelicula>
 }
