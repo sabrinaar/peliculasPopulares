@@ -16,10 +16,7 @@ interface WebService {
   //  suspend fun getListPeliculasPopulares(@Query(value = "api_key") api_key:String): PeliculasPopulares
 
     @GET("popular")
-    suspend fun getPopularesPeliculasPage(@Query("page") page: Int): ResponsePeliculasPopulares
-
-    @GET("popular")
-    suspend fun getPopularesPeliculasAll(): ResponsePeliculasPopulares
+    suspend fun getPopularesPeliculas(@Query("page") page: Int): ResponsePeliculasPopulares
 
 
     @GET("{id_movie}")

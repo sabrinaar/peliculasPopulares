@@ -16,7 +16,8 @@ object RetrofitClient {
 
     const val API_KEY = "210c2545bb0679992dd2cb84412b0906"
     const val BASE_URL = "https://api.themoviedb.org/3/movie/"
-
+   // https://image.tmdb.org/t/p/w342/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg
+   // http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
 
     val webservice by lazy {
 
