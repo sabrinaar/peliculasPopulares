@@ -39,7 +39,7 @@ class AdapterPeliculas(
 
         override fun bind(item: Pelicula, position: Int) {
            
-            Glide.with(context).load(context.getString(R.string.portada_url_base)+item.portada).centerCrop().into(itemView.portada)
+            Glide.with(context).load(context.getString(R.string.portada_url_base)+item.portada).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(itemView.portada)
             itemView.titulo_pelicula_item.text = item.titulo
             itemView.setOnClickListener{itemClickListener.onPeliculaClick(item)}
         }

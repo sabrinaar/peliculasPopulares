@@ -39,18 +39,6 @@ class FragmentMain_Peliculas_Populares : Fragment(), AdapterPeliculas.onPelicula
         return inflater.inflate(R.layout.fragment_lista_peliculas_popul, container, false)
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
