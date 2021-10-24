@@ -39,28 +39,21 @@ class FragmentMain_Peliculas_Populares : Fragment(), AdapterPeliculas.onPelicula
         return inflater.inflate(R.layout.fragment_lista_peliculas_popul, container, false)
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        cargarPopulares()
-
-        button_reconectar_Populares.setOnClickListener {
-           // println(linearLayoutErrorPopulares.visibility)
-            showHide(txt_error)
-            cargarPopulares()
-        }
-    }
-
-    fun showHide(view:View) {
-        view.visibility = if (view.visibility == View.VISIBLE){
-            View.INVISIBLE
-        } else{
-            View.VISIBLE
-        }
-    }
-
-    fun cargarPopulares(){
         viewmodel.peliculasPopularesList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -73,13 +66,10 @@ class FragmentMain_Peliculas_Populares : Fragment(), AdapterPeliculas.onPelicula
                 }
                 is Resource.Failure -> {
                     progress_bar_popular.visibility = View.GONE
-                    txt_error.visibility=View.VISIBLE
-                    button_reconectar_Populares.visibility=View.VISIBLE
 
-                    if (result.exception is UnknownHostException){
-                        result.exception
+                    if (result.exception is UnknownHostException) {
+                        findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
                     }
-
                 }
             }
         })

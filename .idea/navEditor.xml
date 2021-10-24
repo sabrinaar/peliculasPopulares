@@ -13,9 +13,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="x" value="-8" />
+                            <option name="y" value="498" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_fragment_Detalles_Pelicula_to_fragment_Sin_Conexion">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -25,8 +34,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="-433" />
+                            <option name="y" value="89" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -36,7 +45,24 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_Sin_Conexion">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="383" />
+                            <option name="y" value="80" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

@@ -5,25 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.sabrina.peliculaspopulares.R
 import com.sabrina.peliculaspopulares.data.DataSource
 import com.sabrina.peliculaspopulares.data.model.Pelicula
 import com.sabrina.peliculaspopulares.data.model.PeliculaDetalles
 import com.sabrina.peliculaspopulares.domain.RepoImpl
-import com.sabrina.peliculaspopulares.ui.Adapter.AdapterPeliculas
 import com.sabrina.peliculaspopulares.ui.viewmodel.MainViewModel
 import com.sabrina.peliculaspopulares.ui.viewmodel.VMFactory
 import com.sabrina.peliculaspopulares.vo.Resource
 import kotlinx.android.synthetic.main.fragment_detalles_pelicula.*
-import kotlinx.android.synthetic.main.fragment_lista_peliculas_popul.*
-import kotlinx.android.synthetic.main.item_list_pelicula.view.*
-import java.text.ParseException
-import java.text.SimpleDateFormat
-
+import java.net.UnknownHostException
 
 class Fragment_Detalles_Pelicula : Fragment() {
 
@@ -58,7 +53,9 @@ class Fragment_Detalles_Pelicula : Fragment() {
                 }
                 is Resource.Failure -> {
                     progress_bar_detalles.visibility = View.GONE
-                    linearLayoutErrorDetalles.visibility=View.VISIBLE
+                    if (result.exception is UnknownHostException) {
+                        findNavController().navigate(R.id.action_fragment_Detalles_Pelicula_to_fragment_Sin_Conexion)
+                    }
                 }
             }
         })

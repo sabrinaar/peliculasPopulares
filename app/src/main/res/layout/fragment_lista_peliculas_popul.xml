@@ -19,32 +19,6 @@
             android:layout_gravity="center"
             android:visibility="gone"/>
 
-
-
-            <TextView
-                android:id="@+id/txt_error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Error: Problema de Conexión"
-                android:visibility="gone" />
-
-            <Button
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/button_reconectar_Populares"
-                android:backgroundTint="@color/primary_light"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:text="Reintentar"
-                android:visibility="gone"
-                app:initialCornerAngle="27dp"
-                app:spinning_bar_color="#FFF"
-                app:spinning_bar_padding="6dp"
-                app:spinning_bar_width="4dp" />
-
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_peliculas_populares"
             android:layout_marginLeft="4dp"
