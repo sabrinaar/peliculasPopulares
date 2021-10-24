@@ -1,6 +1,7 @@
 package com.sabrina.peliculaspopulares.domain
 
 import com.sabrina.peliculaspopulares.data.model.Pelicula
+import com.sabrina.peliculaspopulares.data.model.PeliculaDetalles
 import com.sabrina.peliculaspopulares.data.model.ResponsePeliculasPopulares
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,7 +20,7 @@ interface WebService {
     suspend fun getPopularesPeliculas(@Query("page") page: Int): ResponsePeliculasPopulares
 
 
-    @GET("{id_movie}")
-    suspend fun getDetallesPelicula(@Path("movie_id") id:Int): Pelicula
+    @GET("{movie_id}")
+    suspend fun getDetallesPelicula(@Path("movie_id") id:Int): PeliculaDetalles
 
 }

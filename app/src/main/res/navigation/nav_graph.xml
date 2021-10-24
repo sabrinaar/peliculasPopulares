@@ -7,12 +7,12 @@
     <fragment
         android:id="@+id/fragment_Detalles_Pelicula"
         android:name="com.sabrina.peliculaspopulares.ui.Fragment_Detalles_Pelicula"
-        android:label="fragment_detalles_pelicula"
+        android:label=""
         tools:layout="@layout/fragment_detalles_pelicula" />
     <fragment
         android:id="@+id/fragment_Peliculas_Populares"
         android:name="com.sabrina.peliculaspopulares.ui.FragmentMain_Peliculas_Populares"
-        android:label="fragment_lista_peliculas_popul"
+        android:label="Populares"
         tools:layout="@layout/fragment_lista_peliculas_popul" >
         <action
             android:id="@+id/action_fragment_Peliculas_Populares_to_fragment_Detalles_Pelicula"

@@ -8,6 +8,7 @@
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     android:layout_marginTop="4dp"
+    android:backgroundTint="@color/primary_light"
     android:layout_marginBottom="8dp"
     android:focusable="true"
     android:clickable="true">
@@ -28,12 +29,13 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/titulo_movie"
+            android:id="@+id/titulo_pelicula_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginStart="4dp"
-            android:text="movie"
+            android:text=""
+            android:textColor="@color/white"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"/>
