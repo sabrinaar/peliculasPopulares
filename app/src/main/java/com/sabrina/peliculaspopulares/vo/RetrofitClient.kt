@@ -2,7 +2,6 @@ package com.sabrina.peliculaspopulares.vo
 
 import com.google.gson.GsonBuilder
 import com.sabrina.peliculaspopulares.domain.WebService
-import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

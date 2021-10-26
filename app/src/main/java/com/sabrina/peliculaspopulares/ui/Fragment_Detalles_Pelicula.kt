@@ -1,20 +1,14 @@
 package com.sabrina.peliculaspopulares.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.sabrina.peliculaspopulares.MainActivity
 import com.sabrina.peliculaspopulares.R
 import com.sabrina.peliculaspopulares.data.DataSource
 import com.sabrina.peliculaspopulares.data.model.Pelicula
@@ -24,7 +18,6 @@ import com.sabrina.peliculaspopulares.ui.viewmodel.MainViewModel
 import com.sabrina.peliculaspopulares.ui.viewmodel.VMFactory
 import com.sabrina.peliculaspopulares.vo.Resource
 import kotlinx.android.synthetic.main.fragment_detalles_pelicula.*
-import kotlinx.android.synthetic.main.progress_dialog.*
 import java.net.UnknownHostException
 
 class Fragment_Detalles_Pelicula : Fragment() {

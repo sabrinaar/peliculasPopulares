@@ -1,15 +1,11 @@
 package com.sabrina.peliculaspopulares.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sabrina.peliculaspopulares.MainActivity
 import com.sabrina.peliculaspopulares.R
 import com.sabrina.peliculaspopulares.data.DataSource
 import com.sabrina.peliculaspopulares.domain.RepoImpl
@@ -49,39 +44,10 @@ class FragmentMain_Peliculas_Populares : Fragment() {
         return inflater.inflate(R.layout.fragment_lista_peliculas_popul, container, false)
     }
 
-   /* fun isOnline(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
-            }
-        }
-        return false
-    }*/
-
-
-    fun isOnline(): Boolean {
-        val connMgr = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo: NetworkInfo? = connMgr.activeNetworkInfo
-        return networkInfo?.isConnected == true
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // if (isOnline()){
             setupRecyclerView()
 
             adaptadorPeliculas.setOnItemClickListener {
@@ -90,25 +56,6 @@ class FragmentMain_Peliculas_Populares : Fragment() {
                 findNavController().navigate(R.id.fragment_Detalles_Pelicula, bundle)
             }
 
-            /* viewmodel.peliculasPopularesList.observe(viewLifecycleOwner, Observer { result ->
-                 when (result) {
-                     is Resource.Loading -> {
-                         progress_bar_popular.visibility = View.VISIBLE
-
-                     }
-                     is Resource.Success -> {
-                         progress_bar_popular.visibility = View.GONE
-                         rv_peliculas_populares.adapter = AdapterPeliculas(requireContext(), result.data, this)
-                     }
-                     is Resource.Failure -> {
-                         progress_bar_popular.visibility = View.GONE
-
-                         if (result.exception is UnknownHostException) {
-                             findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
-                         }
-                     }
-                 }
-             })*/
             viewmodel.list_peliculas_populares.observe(viewLifecycleOwner, Observer { response ->
                 when (response) {
                     is Resource.Loading -> {
@@ -133,9 +80,6 @@ class FragmentMain_Peliculas_Populares : Fragment() {
                     }
                 }
             })
-      //  }else{
-      //      findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
-      //  }
     }
 
 
