@@ -1,6 +1,8 @@
 package com.sabrina.peliculaspopulares.ui
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.sabrina.peliculaspopulares.MainActivity
 import com.sabrina.peliculaspopulares.R
 import com.sabrina.peliculaspopulares.data.DataSource
 import com.sabrina.peliculaspopulares.data.model.Pelicula
@@ -44,25 +47,29 @@ class Fragment_Detalles_Pelicula : Fragment() {
         return inflater.inflate(R.layout.fragment_detalles_pelicula, container, false)
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.peliculaDetalles(pelicula.id).observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Resource.Loading -> {
-                    progress_bar_detalles.visibility = View.VISIBLE
-                }
-                is Resource.Success -> {
-                    setInfoPelicula(result.data)
-                    progress_bar_detalles.visibility = View.GONE
-                }
-                is Resource.Failure -> {
-                    progress_bar_detalles.visibility = View.GONE
-                    if (result.exception is UnknownHostException) {
-                        findNavController().navigate(R.id.action_fragment_Detalles_Pelicula_to_fragment_Sin_Conexion)
+
+
+            viewmodel.peliculaDetalles(pelicula.id).observe(viewLifecycleOwner, Observer { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        progress_bar_detalles.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        setInfoPelicula(result.data)
+                        progress_bar_detalles.visibility = View.GONE
+                    }
+                    is Resource.Failure -> {
+                        progress_bar_detalles.visibility = View.GONE
+                        if (result.exception is UnknownHostException) {
+                            findNavController().navigate(R.id.action_fragment_Detalles_Pelicula_to_fragment_Sin_Conexion)
+                        }
                     }
                 }
-            }
-        })
+            })
 
     }
 

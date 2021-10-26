@@ -1,8 +1,9 @@
 package com.sabrina.peliculaspopulares.domain
 
-import com.sabrina.peliculaspopulares.data.model.Pelicula
 import com.sabrina.peliculaspopulares.data.model.PeliculaDetalles
 import com.sabrina.peliculaspopulares.data.model.ResponsePeliculasPopulares
+import com.sabrina.peliculaspopulares.vo.Resource
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -24,3 +25,4 @@ interface WebService {
     suspend fun getDetallesPelicula(@Path("movie_id") id:Int): PeliculaDetalles
 
 }
+
