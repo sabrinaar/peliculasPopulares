@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,6 +22,7 @@ import com.sabrina.peliculaspopulares.ui.viewmodel.MainViewModel
 import com.sabrina.peliculaspopulares.ui.viewmodel.VMFactory
 import com.sabrina.peliculaspopulares.vo.Resource
 import kotlinx.android.synthetic.main.fragment_lista_peliculas_popul.*
+import java.util.*
 
 const val QUERY_PAGE_SIZE = 20
 
@@ -28,7 +30,6 @@ class FragmentMain_Peliculas_Populares : Fragment() {
 
     private val viewmodel by viewModels<MainViewModel> { VMFactory(RepoImpl(DataSource())) }
     lateinit var adaptadorPeliculas: AdaptadorPeliculas
-    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,38 +49,77 @@ class FragmentMain_Peliculas_Populares : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            setupRecyclerView()
+        setupRecyclerView()
+        setUpBuscador()
+        setUpObserver()
 
-            adaptadorPeliculas.setOnItemClickListener {
-                val bundle = Bundle()
-                bundle.putParcelable("pelicula", it)
-                findNavController().navigate(R.id.fragment_Detalles_Pelicula, bundle)
-            }
+        adaptadorPeliculas.setOnItemClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("pelicula", it)
+            findNavController().navigate(R.id.fragment_Detalles_Pelicula, bundle)
+        }
 
-            viewmodel.list_peliculas_populares.observe(viewLifecycleOwner, Observer { response ->
-                when (response) {
-                    is Resource.Loading -> {
-                        showProgressBar()
-                    }
-                    is Resource.Success -> {
-                        hideProgressBar()
-                        response.data?.let { newsResponse ->
-                            adaptadorPeliculas.differ.submitList(newsResponse.popularPelisList.toList())
-                            val totalPages = newsResponse.totalResultados / QUERY_PAGE_SIZE + 2
-                            isLastPage = viewmodel.pagina_peliculas == totalPages
-                        }
-                    }
-                    is Resource.Error -> {
-                        hideProgressBar()
-                        findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
-                        response.message?.let { message ->
-                            Log.e("TAG", "Error: $message")
-                        }
-                    }
-                }
-            })
+
     }
 
+    fun setUpObserver(){
+        viewmodel.list_peliculas_populares.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+                is Resource.FiltroRegresar -> {
+                    hideProgressBar()
+                    response.data?.let { newsResponse ->
+                        adaptadorPeliculas.differ.submitList(newsResponse.popularPelisList.toList())
+
+                        val totalPages = newsResponse.totalResultados / QUERY_PAGE_SIZE + 2
+                        isLastPage = viewmodel.pagina_peliculas_a_buscar == totalPages
+                    }
+                }
+                is Resource.Filtro -> {
+                    hideProgressBar()
+                    response.data?.let { newsResponse ->
+                        adaptadorPeliculas.differ.submitList(newsResponse.popularPelisList.toList())
+
+                        isLastPage = true
+                    }
+                }
+                is Resource.Success -> {
+                    hideProgressBar()
+                    response.data?.let { newsResponse ->
+                        adaptadorPeliculas.differ.submitList(newsResponse.popularPelisList.toList())
+                        val totalPages = newsResponse.totalResultados / QUERY_PAGE_SIZE + 2
+                        isLastPage = viewmodel.pagina_peliculas_a_buscar == totalPages
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
+                    response.message?.let { message ->
+                        Log.e("TAG", "Error: $message")
+                    }
+                }
+            }
+        })
+    }
+
+    fun setUpBuscador() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                viewmodel.getPeliculasPopularesFiltro(p0!!) //buscar peli al hacer submit
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                if (p0.equals("")){ //cuando borra el nombre a buscar
+                    viewmodel.getPeliculasPopularesFiltroBack()
+                }
+                return false
+            }
+        }
+        )
+    }
 
     private fun hideProgressBar() {
         progress_bar_popular.visibility = View.GONE
