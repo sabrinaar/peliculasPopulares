@@ -8,7 +8,5 @@ interface Repo {
 
     suspend fun getPeliculasPopulares(page: Int): Resource<ResponsePeliculasPopulares>
 
-    suspend fun getPeliculasPopularesFiltro(page: Int, nombre:String): Resource<ResponsePeliculasPopulares>
-
     suspend fun getDeatllesPelicula(id_movie: Int): Resource<PeliculaDetalles>
 }

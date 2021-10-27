@@ -11,10 +11,6 @@ class RepoImpl(private val dataSource: DataSource) : Repo {
         return dataSource.getPeliculasPopulares(page)
     }
 
-    override suspend fun getPeliculasPopularesFiltro(page: Int, nombre:String): Resource<ResponsePeliculasPopulares>{
-        return dataSource.getPeliculasPopularesFiltro(page,nombre)
-    }
-
 
     override suspend fun getDeatllesPelicula(id_movie: Int): Resource<PeliculaDetalles> {
         return dataSource.getDetallesPelicula(id_movie)

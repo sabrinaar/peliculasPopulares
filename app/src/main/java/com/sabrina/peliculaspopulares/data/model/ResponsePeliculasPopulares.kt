@@ -11,7 +11,7 @@ data class ResponsePeliculasPopulares (
     @SerializedName("results")
     var popularPelisList: MutableList<Pelicula>,
     @SerializedName("total_pages")
-    val totalPaginas: Int,
+    var totalPaginas: Int,
     @SerializedName("total_results")
-    val totalResultados: Int
+    var totalResultados: Int
 ): Parcelable
