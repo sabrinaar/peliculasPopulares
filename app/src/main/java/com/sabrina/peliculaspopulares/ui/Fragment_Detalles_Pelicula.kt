@@ -73,7 +73,7 @@ class Fragment_Detalles_Pelicula : Fragment() {
 
         if (pelicula.portada.isNotEmpty() && !pelicula.portada.isNullOrBlank()) {
             Glide.with(requireContext())
-                .load(getString(R.string.portada_url_base) + pelicula.portada)
+                .load(getString(R.string.portada_url_base342) + pelicula.portada)
                 .centerCrop().into(image_portada_detalle)
         }else{
             Glide.with(requireContext())

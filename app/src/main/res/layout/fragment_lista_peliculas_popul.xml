@@ -8,10 +8,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.FragmentMain_Peliculas_Populares">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/buscador_peliculas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_normal"
+            android:layout_marginVertical="@dimen/margin_small"
+            app:cardCornerRadius="@dimen/search_view_radius"
+
+            >
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:queryBackground="@color/transparent"
+                android:queryHint="Buscar Pelicula"
+                android:searchHintIcon="@null"
+                android:searchIcon="@null" />
+
+        </com.google.android.material.card.MaterialCardView>
 
 
         <ProgressBar

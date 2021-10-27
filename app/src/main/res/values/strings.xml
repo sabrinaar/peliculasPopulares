@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Peliculas Populares</string>
 
-    <string name="portada_url_base">https://image.tmdb.org/t/p/w185</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="portada_url_base185">https://image.tmdb.org/t/p/w185</string>
+    <string name="portada_url_base342">https://image.tmdb.org/t/p/w342</string>
 
 </resources>

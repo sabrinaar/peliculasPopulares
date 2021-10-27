@@ -34,7 +34,6 @@ class MainViewModel(private val repo: Repo) : ViewModel() {
         list_peliculas_populares.postValue(Resource.Loading())
         val response = repo.getPeliculasPopulares(pagina_peliculas)
         list_peliculas_populares.postValue(handlePeliculasPopularesResponse(response))
-
     }
 
     private fun handlePeliculasPopularesResponse(response: Resource<ResponsePeliculasPopulares>): Resource<ResponsePeliculasPopulares> {

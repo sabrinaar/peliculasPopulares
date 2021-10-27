@@ -71,11 +71,9 @@ class FragmentMain_Peliculas_Populares : Fragment() {
                     }
                     is Resource.Error -> {
                         hideProgressBar()
-                        println("acaa")
                         findNavController().navigate(R.id.action_fragment_Peliculas_Populares_to_fragment_Sin_Conexion2)
-
                         response.message?.let { message ->
-                            Log.e("TAG", "An error occured: $message")
+                            Log.e("TAG", "Error: $message")
                         }
                     }
                 }
@@ -87,11 +85,6 @@ class FragmentMain_Peliculas_Populares : Fragment() {
         progress_bar_popular.visibility = View.GONE
         isLoading = false
     }
-
-    /*private fun setupRecyclerView() {
-        rv_peliculas_populares.layoutManager = GridLayoutManager(requireContext(), 3)
-    }*/
-
 
     private fun showProgressBar() {
         progress_bar_popular.visibility = View.VISIBLE

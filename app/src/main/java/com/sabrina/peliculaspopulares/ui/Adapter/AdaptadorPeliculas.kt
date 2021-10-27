@@ -46,7 +46,7 @@ class AdaptadorPeliculas : RecyclerView.Adapter<AdaptadorPeliculas.ArticleViewHo
         override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
             val article = differ.currentList[position]
             holder.itemView.apply {
-                Glide.with(context).load(context.getString(R.string.portada_url_base)+article.portada).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(portada)
+                Glide.with(context).load(context.getString(R.string.portada_url_base185)+article.portada).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(portada)
                 titulo_pelicula_item.text = article.titulo
 
                 setOnClickListener {

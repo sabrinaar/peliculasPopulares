@@ -18,7 +18,7 @@ class DataSource {
               )
         }catch (e:Exception
         ){
-            return Resource.Error("error")
+            return Resource.Error("Error de conexión")
         }
 
     }
