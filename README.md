@@ -1,5 +1,6 @@
 # Peliculas Populares
-Obtiene las peliculas populares de la API:  https://www.themoviedb.org y permite ver los detalles de cada pelicula
+Obtiene las peliculas populares de la API:  https://www.themoviedb.org y permite ver los detalles de cada pelicula. 
+Se puede buscar pelicula por nombre y evaluarla. 
 
 - Arquitecura MVVM
 - Coroutines
