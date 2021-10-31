@@ -4,4 +4,8 @@
     <string name="portada_url_base185">https://image.tmdb.org/t/p/w185</string>
     <string name="portada_url_base342">https://image.tmdb.org/t/p/w342</string>
 
+    //sharedpreferences
+    <string name="rating_user_key">rating</string>
+
+
 </resources>

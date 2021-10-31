@@ -19,15 +19,7 @@ class MainViewModel(private val repo: Repo) : ViewModel() {
     var oldPeliculas = mutableListOf<Pelicula>()
     var newPeliculas = mutableListOf<Pelicula>()
 
-    fun peliculaDetalles(id_pelicula: Int) = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            emit(repo.getDeatllesPelicula(id_pelicula))
-        } catch (e: Exception) {
-            emit(Resource.Failure(e))
-        }
-    }
-
+    /////////////////////////////// PELICULAS POPULARES VIEWMODEL ////////////////////
 
     init {
         getPeliculasPopulares()
@@ -85,20 +77,13 @@ class MainViewModel(private val repo: Repo) : ViewModel() {
             }
             is Resource.Filtro -> {
 
-                // pagina_peliculas++
-                if (peliculasResponse == null) {
-                    peliculasResponse = response.data
-                } else {
+                response.data.popularPelisList =
+                    response.data.popularPelisList.filter { pelicula ->
+                        pelicula.titulo.toLowerCase()
+                            .contains(peliculaNombre.value.toString().toLowerCase())
+                    }.toMutableList()
+                newPeliculas = response.data.popularPelisList
 
-
-                    response.data.popularPelisList =
-                        response.data.popularPelisList.filter { pelicula ->
-                            pelicula.titulo.toLowerCase()
-                                .contains(peliculaNombre.value.toString().toLowerCase())
-                        }.toMutableList()
-                    newPeliculas = response.data.popularPelisList
-
-                }
                 result = Resource.Filtro(response.data)
             }
             is Resource.Success -> {
@@ -109,7 +94,7 @@ class MainViewModel(private val repo: Repo) : ViewModel() {
                 } else {
                     oldPeliculas = peliculasResponse?.popularPelisList!!
                     newPeliculas = response.data!!.popularPelisList
-                    oldPeliculas?.addAll(newPeliculas)
+                    oldPeliculas.addAll(newPeliculas)
                 }
                 result = Resource.Success(peliculasResponse ?: response.data)
             }
@@ -118,5 +103,25 @@ class MainViewModel(private val repo: Repo) : ViewModel() {
             }
         }
         return result
+    }
+
+    ////////////////////////////////// DETALLES PELICULA VIEMODEL ////////////////
+
+    fun peliculaDetalles(id_pelicula: Int) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(repo.getDetallesPelicula(id_pelicula))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
+    fun setRating(id_pelicula: Int, rating:Float) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(repo.setRating(id_pelicula, rating))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
     }
 }

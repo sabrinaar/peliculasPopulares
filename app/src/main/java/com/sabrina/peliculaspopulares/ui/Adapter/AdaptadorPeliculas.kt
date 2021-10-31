@@ -11,9 +11,9 @@ import com.sabrina.peliculaspopulares.data.model.Pelicula
 import kotlinx.android.synthetic.main.item_list_pelicula.view.*
 
 
-class AdaptadorPeliculas : RecyclerView.Adapter<AdaptadorPeliculas.ArticleViewHolder>() {
+class AdaptadorPeliculas : RecyclerView.Adapter<AdaptadorPeliculas.PeliculaViewHolder>() {
 
-        inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+        inner class PeliculaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
         private val differCallback = object : DiffUtil.ItemCallback<Pelicula>() {
             override fun areItemsTheSame(oldItem: Pelicula, newItem: Pelicula): Boolean {
@@ -27,8 +27,8 @@ class AdaptadorPeliculas : RecyclerView.Adapter<AdaptadorPeliculas.ArticleViewHo
 
         val differ = AsyncListDiffer(this, differCallback)
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-            return ArticleViewHolder(
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeliculaViewHolder {
+            return PeliculaViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_list_pelicula,
                     parent,
@@ -43,14 +43,13 @@ class AdaptadorPeliculas : RecyclerView.Adapter<AdaptadorPeliculas.ArticleViewHo
 
         private var onItemClickListener: ((Pelicula) -> Unit)? = null
 
-        override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-            val article = differ.currentList[position]
+        override fun onBindViewHolder(holder: PeliculaViewHolder, position: Int) {
+            val pelicula = differ.currentList[position]
             holder.itemView.apply {
-                Glide.with(context).load(context.getString(R.string.portada_url_base185)+article.portada).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(portada)
-                titulo_pelicula_item.text = article.titulo
-
+                Glide.with(context).load(context.getString(R.string.portada_url_base185)+pelicula.portada).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(portada)
+                titulo_pelicula_item.text = pelicula.titulo
                 setOnClickListener {
-                    onItemClickListener?.let { it(article) }
+                    onItemClickListener?.let { it(pelicula) }
                 }
             }
         }

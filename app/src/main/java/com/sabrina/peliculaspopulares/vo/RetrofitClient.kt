@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
 
     const val API_KEY = "210c2545bb0679992dd2cb84412b0906"
-    const val BASE_URL = "https://api.themoviedb.org/3/movie/"
+    const val BASE_URL = "https://api.themoviedb.org/3/"
 
     const val PAGE= 1
     const val PELICULAS_POR_PAGE=20

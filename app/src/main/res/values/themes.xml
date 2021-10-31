@@ -19,6 +19,22 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
     <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+
+    <style name="RatingBar" parent="AppTheme">
+        <item name="ratingBarStyle">@style/Controls.RatingBar</item>
+        <item name="colorControlActivated">#E97924</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Controls.RatingBar" parent="Widget.AppCompat.RatingBar">
+    </style>
+
+
+    <style name="Controls.RatingBarSmall" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="colorControlActivated">#E97924</item>
+        <item name="android:isIndicator">false</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 </resources>

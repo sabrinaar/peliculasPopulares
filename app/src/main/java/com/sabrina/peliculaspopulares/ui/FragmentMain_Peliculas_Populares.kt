@@ -30,6 +30,9 @@ class FragmentMain_Peliculas_Populares : Fragment() {
 
     private val viewmodel by viewModels<MainViewModel> { VMFactory(RepoImpl(DataSource())) }
     lateinit var adaptadorPeliculas: AdaptadorPeliculas
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +92,7 @@ class FragmentMain_Peliculas_Populares : Fragment() {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         adaptadorPeliculas.differ.submitList(newsResponse.popularPelisList.toList())
-                        val totalPages = newsResponse.totalResultados / QUERY_PAGE_SIZE + 2
+                        val totalPages = newsResponse.totalPaginas + 2
                         isLastPage = viewmodel.pagina_peliculas_a_buscar == totalPages
                     }
                 }
@@ -131,9 +134,7 @@ class FragmentMain_Peliculas_Populares : Fragment() {
         isLoading = true
     }
 
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
+
 
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
