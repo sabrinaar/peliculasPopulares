@@ -34,7 +34,7 @@ class DataSource {
         try {
             return Resource.Success(RetrofitClient.webservice.getDetallesPelicula(id_movie))
         }catch (e:Exception){
-            return Resource.Error("Error de conexión")
+            return Resource.Failure(e)
         }
     }
 
